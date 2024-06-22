@@ -9,11 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@packages/ui": "*",
-    "@tailwindcss/forms": "^0.5.7",
-    "next": "15.0.0-rc.0",
-    "react": "19.0.0-rc-f994737d14-20240522",
-    "react-dom": "19.0.0-rc-f994737d14-20240522"
+    "@packages/ui": "*"
   },
   "devDependencies": {
     "@packages/eslint-config": "*",
