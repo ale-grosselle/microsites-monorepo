@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "proxy-dev": "turbo run dev --filter=@tools/proxy",
-    "dev": "turbo run dev --filter=@micro-site/* --filter=@tools/proxy",
+    "proxy-dev": "turbo run dev --filter=@packages/proxy",
+    "dev": "turbo run dev --filter=@micro-site/* --filter=@packages/proxy",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
@@ -19,8 +19,7 @@
   "packageManager": "npm@10.5.1",
   "workspaces": [
     "microsites/*",
-    "packages/*",
-    "tools/*"
+    "packages/*"
   ],
   "dependencies": {
     "@heroicons/react": "^2.1.4",

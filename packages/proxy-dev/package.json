@@ -1,5 +1,5 @@
 {
-  "name": "@tools/proxy",
+  "name": "@packages/proxy",
   "version": "0.1.0",
   "private": true,
   "scripts": {
