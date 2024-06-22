@@ -1,0 +1,30 @@
+{
+  "login": {
+    "micrositeConfig": {
+      "port": 3002,
+      "assetPrefix": "/dashboard/login-prefix"
+    },
+    "webServerConfig": {
+      "path": "/dashboard/login"
+    }
+  },
+  "admin": {
+    "micrositeConfig": {
+      "port": 3000,
+      "assetPrefix": "/dashboard-prefix",
+      "basePath": "/dashboard"
+    },
+    "webServerConfig": {
+      "path": "/dashboard"
+    }
+  },
+  "homepage": {
+    "micrositeConfig": {
+      "port": 3004,
+      "assetPrefix": "/homepage"
+    },
+    "webServerConfig": {
+      "path": "/"
+    }
+  }
+}

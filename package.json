@@ -1,0 +1,29 @@
+{
+  "name": "turborepo",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "proxy-dev": "turbo run dev --filter=@tools/proxy",
+    "dev": "turbo run dev --filter=@micro-site/* --filter=@tools/proxy",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.4",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@10.5.1",
+  "workspaces": [
+    "microsites/*",
+    "packages/*",
+    "tools/*"
+  ],
+  "dependencies": {
+    "@heroicons/react": "^2.1.4",
+    "tailwindcss": "^3.4.4"
+  }
+}
