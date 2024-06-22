@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "proxy-dev": "turbo run dev --filter=@packages/proxy",
     "dev": "turbo run dev --filter=@micro-site/* --filter=@packages/proxy",
+    "proxy-dev-only": "turbo run dev --filter=@packages/proxy",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
