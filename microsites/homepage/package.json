@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "../../scripts/dev.sh homepage",
     "build": "next build",
-    "start": "next start",
+    "start": "../../scripts/dev.sh homepage production",
     "lint": "next lint"
   },
   "dependencies": {

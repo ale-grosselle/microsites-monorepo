@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "../../scripts/dev.sh login",
     "build": "next build",
-    "start": "next start",
+    "start": "../../scripts/dev.sh login production",
     "lint": "next lint"
   },
   "dependencies": {

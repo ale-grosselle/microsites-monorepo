@@ -1,14 +1,9 @@
 #!/bin/sh
 
-# Check if the correct number of arguments is provided
-if [ "$#" -ne 1 ]; then
-  echo "Usage: $0 <project_key>"
-  exit 1
-fi
-
 # Get the project key from the first script argument
 PROJECT_KEY=$1
-
+# Get the mode from the second script argument
+MODE=$2
 # Path to the configuration file
 CONFIG_FILE="../../micro-config.json"
 
@@ -21,6 +16,12 @@ if [ "$PORT" = "null" ] || [ -z "$PORT" ]; then
   exit 1
 fi
 
-# Start the Next.js development server with the specified port and turbo mode
-echo "Starting Next.js development server for project \"$PROJECT_KEY\" on port $PORT..."
-npx next dev -p "$PORT" --turbo
+
+# Start the Next.js server with the specified port and mode
+if [ "$MODE" = "production" ]; then
+    echo "Starting Next.js production server for project \"$PROJECT_KEY\" on port $PORT..."
+    npx next start -p "$PORT"
+else
+  echo "Starting Next.js development server for project \"$PROJECT_KEY\" on port $PORT..."
+  npx next dev -p "$PORT" --turbo
+fi

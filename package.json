@@ -4,7 +4,8 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo run dev --filter=@micro-site/* --filter=@packages/proxy",
-    "proxy-dev-only": "turbo run dev --filter=@packages/proxy",
+    "dev-proxy-only": "turbo watch build --filter=@packages/proxy",
+    "start": "turbo run start",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },

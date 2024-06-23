@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "ts-node src/index.ts"
+    "dev": "nodemon --exec npm run build",
+    "build": "ts-node src/index.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
     "express": "^4.19.2",
     "http-proxy-middleware": "^3.0.0",
+    "nodemon": "^3.1.4",
     "ts-node": "^10.9.2"
   }
 }
