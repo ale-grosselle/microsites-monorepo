@@ -9,8 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@packages/ui": "*",
-    "@tailwindcss/forms": "^0.5.7"
+    "@packages/ui": "*"
   },
   "devDependencies": {
     "@packages/eslint-config": "*",
