@@ -1,18 +1,20 @@
-import * as https from "https";
-import * as fs from "fs";
+//import * as https from "https";
+import * as http from "http";
+//import * as fs from "fs";
 import express from "express";
 import { createProxyMiddleware } from "http-proxy-middleware";
-import path from "path";
+//import path from "path";
 import type { Config } from "./types";
 
 // SSL certificate
-const key = fs.readFileSync(
+/*const key = fs.readFileSync(
   path.join(__dirname, "../certs/ale-poc.example-key.pem"),
 );
 const cert = fs.readFileSync(
   path.join(__dirname, "../certs/ale-poc.example.pem"),
 );
 const credentials: { key: Buffer; cert: Buffer } = { key, cert };
+*/
 
 // Config microsite proxy
 import config from "../../../micro-config.json"; // Adjust type if possible
@@ -48,9 +50,9 @@ const myProxy = createProxyMiddleware(options);
 app.use(myProxy);
 
 // Create HTTPS server
-const httpsServer = https.createServer(credentials, app);
+const httpsServer = http.createServer(/*credentials,*/ app);
 const HTTPS_PORT = 8443;
 
 httpsServer.listen(HTTPS_PORT, () => {
-  console.log(`HTTPS proxy server running at https://localhost:${HTTPS_PORT}`);
+  console.log(`HTTP proxy server running at http://localhost:${HTTPS_PORT}`);
 });
