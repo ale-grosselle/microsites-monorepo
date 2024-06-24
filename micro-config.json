@@ -10,7 +10,7 @@
   },
   "admin": {
     "micrositeConfig": {
-      "port": 3000,
+      "port": 3001,
       "assetPrefix": "/dashboard-prefix",
       "basePath": "/dashboard"
     },

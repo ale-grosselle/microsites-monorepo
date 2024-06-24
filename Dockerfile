@@ -61,5 +61,10 @@ COPY --from=installer --chown=nextjs:nodejs /app/microsites/homepage/public ./mi
 COPY --from=installer --chown=nextjs:nodejs /app/packages/proxy-dev ./packages/proxy-dev
 
 #CMD ["sh"]
-CMD ["sh", "-c", "node microsites/admin/server.js & node microsites/login/server.js & node microsites/homepage/server.js & node packages/proxy-dev/dist/index.js"]
+ENV ADMIN_PORT=3001
+ENV LOGIN_PORT=3002
+ENV HOMEPAGE_PORT=3004
+ENV PROXY_PORT=8443
+CMD ["sh", "-c", "PORT=${ADMIN_PORT} node microsites/admin/server.js & PORT=${LOGIN_PORT} node microsites/login/server.js & PORT=${HOMEPAGE_PORT} node microsites/homepage/server.js & PORT=${PROXY_PORT} node packages/proxy-dev/dist/index.js"]
+
 
