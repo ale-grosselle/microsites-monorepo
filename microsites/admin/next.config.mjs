@@ -6,6 +6,7 @@ const BASE_PATH_FOR_APP = micrositeConfig.admin.micrositeConfig.basePath
 const nextConfig = {
     assetPrefix: BASE_PREFIX_FOR_APP,
     basePath: BASE_PATH_FOR_APP,
+    output: "standalone",
     async rewrites() {
         return [
             {

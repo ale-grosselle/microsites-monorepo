@@ -1,10 +1,10 @@
 import micrositeConfig from '../../micro-config.json' with {type: "json"};
 
-const BASE_PREFIX_FOR_APP = micrositeConfig.login.micrositeConfig.assetPrefix;
+const BASE_PREFIX_FOR_APP = micrositeConfig.homepage.micrositeConfig.assetPrefix;
 
 const nextConfig = {
-    output: "standalone",
     assetPrefix: BASE_PREFIX_FOR_APP,
+    output: "standalone",
     async rewrites() {
         return [
             {
