@@ -68,7 +68,7 @@ COPY --from=installer --chown=nextjs:nodejs /app/microsites/homepage/public ./mi
 
 COPY --from=installer --chown=nextjs:nodejs /app/packages/proxy-dev ./packages/proxy-dev
 
-CMD ["sh"]
+#CMD ["sh"]
 # Execute the microsites copying and startup script
 ENTRYPOINT ["/app/run-microsites.sh"]
 
