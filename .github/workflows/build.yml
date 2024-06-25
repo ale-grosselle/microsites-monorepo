@@ -39,13 +39,18 @@ jobs:
 
       - name: Changeset
         id: changeset
-        run: |        
-          npx -y turbo build --dry-run=json --filter=...[$TURBO_REF_FILTER] --global-deps=.github/* >> $GITHUB_OUTPUT
+        run: |
+          CHANGES=$(npx -y turbo build --dry-run=json --filter=...[$TURBO_REF_FILTER] --global-deps=.github/*)
+          echo "result=$CHANGES" >> $GITHUB_ENV
+
       - name: Output changed packages
         id: output-changed-packages
         run: |
+          CHANGES=${{ env.result }}
+          CHANGED_PACKAGES=$(echo "$CHANGES" | jq -c '.packages')
+          echo "changed_packages=$CHANGED_PACKAGES" >> $GITHUB_ENV
           echo 'changed_packages<<CHANGED_PACKAGES_DELIMITER' >> $GITHUB_OUTPUT
-          echo "${{ toJSON(fromJSON(steps.changeset.outputs.result).packages) }}" >> $GITHUB_OUTPUT
+          echo "$CHANGED_PACKAGES" >> $GITHUB_OUTPUT
           echo 'CHANGED_PACKAGES_DELIMITER' >> $GITHUB_OUTPUT
 
       - name: Deploy to production
