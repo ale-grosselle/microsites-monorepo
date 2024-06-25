@@ -36,7 +36,8 @@ jobs:
         id: changes
         run: |
           npx turbo run build --dry-run=json > turbo-output.json
-          echo "CHANGED_PACKAGES=$(jq -r '.tasks | keys[]' turbo-output.json)" >> $GITHUB_ENV
+          CHANGED_PACKAGES=$(jq -r '.tasks | keys[]' turbo-output.json | tr '\n' ',' | sed 's/,$//')
+          echo "CHANGED_PACKAGES=$CHANGED_PACKAGES" >> $GITHUB_ENV
 
       - name: Build changed packages
         if: env.CHANGED_PACKAGES != ''
