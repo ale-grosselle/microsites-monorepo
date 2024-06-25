@@ -1,5 +1,12 @@
-name: 'ci'
-on: push
+name: Build and Deploy Changed Packages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
