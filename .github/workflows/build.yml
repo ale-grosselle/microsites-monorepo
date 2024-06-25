@@ -11,11 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # You'll want to delete this "outputs" block in your workflow if you don't plan to use
-    # the returned workspace names in a matrix job.
-    # This makes the output of the action available to use for the matrix job.
-    outputs:
-      affectedWorkspaces: ${{ steps.changedAction.outputs.affectedWorkspaces }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,12 +22,12 @@ jobs:
         uses: Trampoline-CX/action-turbo-changed@v1
         with:
           workspace: "@micro-site"
-          from: HEAD^1        
+          from: HEAD^1 # Check for changes since previous commit (feel free to put a branch name instead)
 
       # Do something more meaningful here, like do heavy computing, add PR label, etc.
       - name: Validate Action Output
         if: steps.changedAction.outputs.changed == 'true' # Check output if it changed or not (returns a boolean)
-        run: echo 'package-a changed!'
+        run: echo 'micro-site changed! ${{ needs.build.outputs.affectedWorkspaces }}'
 
   # You'll want to delete this job if you don't plan to use the returned workspace names in a matrix job.
   build-affected:
