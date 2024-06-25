@@ -39,11 +39,8 @@ jobs:
 
       - name: Changeset
         id: changeset
-        run: |
-          echo 'result<<CHANGESET_DELIMITER' >> $GITHUB_OUTPUT
+        run: |        
           npx -y turbo build --dry-run=json --filter=...[$TURBO_REF_FILTER] --global-deps=.github/* >> $GITHUB_OUTPUT
-          echo 'CHANGESET_DELIMITER' >> $GITHUB_OUTPUT
-
       - name: Output changed packages
         id: output-changed-packages
         run: |
