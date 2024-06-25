@@ -1,5 +1,8 @@
 FROM node:18-alpine AS base
 
+# Install jq for JSON parsing
+RUN apk --no-cache add jq
+
 FROM base AS builder
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk update
@@ -36,13 +39,18 @@ RUN turbo build --filter=@micro-site/* --filter=@packages/proxy
 FROM base AS runner
 WORKDIR /app
 
+# Copy run microsites script
+COPY --from=installer --chown=nextjs:nodejs /app/packages/proxy-dev/scripts/run-microsites.sh ./
+RUN chmod +x /app/run-microsites.sh
+
 # Don't run production as root
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
 
-COPY --from=installer /app/microsites/admin/next.config.mjs .
-COPY --from=installer /app/microsites/admin/package.json .
+#COPY --from=installer /app/microsites/admin/next.config.mjs .
+#COPY --from=installer /app/microsites/admin/package.json .
+COPY --from=installer /app/micro-config.json .
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
@@ -60,11 +68,8 @@ COPY --from=installer --chown=nextjs:nodejs /app/microsites/homepage/public ./mi
 
 COPY --from=installer --chown=nextjs:nodejs /app/packages/proxy-dev ./packages/proxy-dev
 
-#CMD ["sh"]
-ENV ADMIN_PORT=3001
-ENV LOGIN_PORT=3002
-ENV HOMEPAGE_PORT=3004
-ENV PROXY_PORT=8443
-CMD ["sh", "-c", "PORT=${ADMIN_PORT} node microsites/admin/server.js & PORT=${LOGIN_PORT} node microsites/login/server.js & PORT=${HOMEPAGE_PORT} node microsites/homepage/server.js & PORT=${PROXY_PORT} node packages/proxy-dev/dist/index.js"]
+CMD ["sh"]
+# Execute the microsites copying and startup script
+ENTRYPOINT ["/app/run-microsites.sh"]
 
 
