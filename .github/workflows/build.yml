@@ -26,7 +26,7 @@ jobs:
         id: changedAction
         uses: Trampoline-CX/action-turbo-changed@v1
         with:
-          workspace: @micro-site
+          workspace: "@micro-site"
           from: HEAD^1
           working-directory: example/yarn-workspaces # You'll want to delete that on your end
 
