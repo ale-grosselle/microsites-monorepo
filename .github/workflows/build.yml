@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - main
-      
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +19,7 @@ jobs:
 
       - name: Collect Turborepo Changes
         id: turborepoChanges
-        uses: 94726/action-turborepo-changed@v1
+        uses: "94726/action-turborepo-changed@v1"
         with:
           from: HEAD^1 # Changes since previous commit (this is the default)
 
