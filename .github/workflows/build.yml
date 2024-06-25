@@ -27,8 +27,7 @@ jobs:
         uses: Trampoline-CX/action-turbo-changed@v1
         with:
           workspace: "@micro-site"
-          from: HEAD^1
-          working-directory: example/yarn-workspaces # You'll want to delete that on your end
+          from: HEAD^1        
 
       # Do something more meaningful here, like do heavy computing, add PR label, etc.
       - name: Validate Action Output
