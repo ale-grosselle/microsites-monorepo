@@ -1,41 +1,21 @@
-name: Build and Deploy Changed Packages
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+name: 'ci'
+on: push
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # Necessary so we have commit history to compare to
+          fetch-depth: 0 # Necessary for comparing changes to past commits
 
-      - name: package-a changed since the main branch?
-        id: changedAction
-        uses: Trampoline-CX/action-turbo-changed@v1
+      - name: Collect Turborepo Changes
+        id: turborepoChanges
+        uses: 94726/action-turborepo-changed@v1
         with:
-          workspace: "@micro-site"
-          from: HEAD^1 # Check for changes since previous commit (feel free to put a branch name instead)
+          from: HEAD^1 # Changes since previous commit (this is the default)
 
-      # Do something more meaningful here, like do heavy computing, add PR label, etc.
       - name: Validate Action Output
-        if: steps.changedAction.outputs.changed == 'true' # Check output if it changed or not (returns a boolean)
-        run: echo 'micro-site changed! ${{ needs.build.outputs.affectedWorkspaces }}'
-
-  # You'll want to delete this job if you don't plan to use the returned workspace names in a matrix job.
-  build-affected:
-    runs-on: ubuntu-latest
-    needs: build
-    strategy:
-      matrix:
-        workspace: ${{ needs.build.outputs.affectedWorkspaces }}
-    steps:
-      - name: Dummy Build Step
-        run: "echo 'Matrix run: ${{ matrix.workspace }} changed!'"
+        if: contains(fromJson(steps.turborepoChanges.outputs.package_names), 'components') # Check if components package has changed
+        run: echo 'package "components" has changed'
