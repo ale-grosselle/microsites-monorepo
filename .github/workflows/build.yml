@@ -9,51 +9,39 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    env:
-      # The turbo filter here varies depending on if we're using this workflow in a PR or on a push to a branch
-      # For PRs, we want to use `github.event.pull_request.base.sha` to tell turbo to see which packages changed since that SHA
-      # For a branch push/merges, the above sha isn't available, so instead, we reference `github.event.before` to determine the previous `HEAD` of the branch we just pushed onto
-      #   See SO answer for more info https://stackoverflow.com/a/61861763/2379922
-      TURBO_REF_FILTER: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+    # You'll want to delete this "outputs" block in your workflow if you don't plan to use
+    # the returned workspace names in a matrix job.
+    # This makes the output of the action available to use for the matrix job.
+    outputs:
+      affectedWorkspaces: ${{ steps.changedAction.outputs.affectedWorkspaces }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          node-version: '18'
+          fetch-depth: 0 # Necessary so we have commit history to compare to
 
-      - name: Install dependencies
-        run: npm install --force
-
-      - name: Cache Turborepo
-        uses: actions/cache@v2
+      - name: package-a changed since the main branch?
+        id: changedAction
+        uses: Trampoline-CX/action-turbo-changed@v1
         with:
-          path: |
-            .turbo
-            node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          workspace: @micro-site
+          from: HEAD^1
+          working-directory: example/yarn-workspaces # You'll want to delete that on your end
 
-      - name: Changeset
-        id: changeset
-        run: |
-          CHANGES=$(npx -y turbo build --dry-run=json --filter=...[$TURBO_REF_FILTER] --global-deps=.github/* 2>&1)
-          echo "$CHANGES"
-          echo "result=$CHANGES" >> $GITHUB_ENV
+      # Do something more meaningful here, like do heavy computing, add PR label, etc.
+      - name: Validate Action Output
+        if: steps.changedAction.outputs.changed == 'true' # Check output if it changed or not (returns a boolean)
+        run: echo 'package-a changed!'
 
-      - name: Output changed packages
-        id: output-changed-packages
-        run: |
-          CHANGES=${{ env.result }}
-          CHANGED_PACKAGES=$(echo "$CHANGES" | jq -c '.packages')
-          echo "changed_packages=$CHANGED_PACKAGES" >> $GITHUB_ENV
-          echo 'changed_packages<<CHANGED_PACKAGES_DELIMITER' >> $GITHUB_OUTPUT
-          echo "$CHANGED_PACKAGES" >> $GITHUB_OUTPUT
-          echo 'CHANGED_PACKAGES_DELIMITER' >> $GITHUB_OUTPUT
-
-      - name: Deploy to production
-        if: steps.changeset.outputs.result != ''
-        run: /deploy-to-prod.sh ${{ steps.output-changed-packages.outputs.changed_packages }}
+  # You'll want to delete this job if you don't plan to use the returned workspace names in a matrix job.
+  build-affected:
+    runs-on: ubuntu-latest
+    needs: build
+    strategy:
+      matrix:
+        workspace: ${{ needs.build.outputs.affectedWorkspaces }}
+    steps:
+      - name: Dummy Build Step
+        run: "echo 'Matrix run: ${{ matrix.workspace }} changed!'"
