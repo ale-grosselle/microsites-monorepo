@@ -1,0 +1,55 @@
+name: Build and Deploy Changed Packages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # O la versione di Node.js che utilizzi
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Cache Turborepo
+        uses: actions/cache@v2
+        with:
+          path: |
+            .turbo
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Detect changed packages
+        id: changes
+        run: |
+          npx turbo run build --dry-run=json > turbo-output.json
+          echo "CHANGED_PACKAGES=$(jq -r '.tasks | keys[]' turbo-output.json)" >> $GITHUB_ENV
+
+      - name: Build changed packages
+        if: env.CHANGED_PACKAGES != ''
+        run: |
+          echo "Changed packages: $CHANGED_PACKAGES"
+          npx turbo run build --filter={$CHANGED_PACKAGES}
+
+      - name: Deploy to production
+        if: env.CHANGED_PACKAGES != ''
+        run: |
+          IFS=',' read -ra PACKAGES <<< "$CHANGED_PACKAGES"
+          for PACKAGE in "${PACKAGES[@]}"; do
+            PACKAGE_NAME=$(basename "$PACKAGE")
+            echo "Deploying $PACKAGE_NAME to production"
+            ./deploy-to-prod.sh $PACKAGE_NAME
+          done
