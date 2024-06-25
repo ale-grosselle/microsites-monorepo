@@ -40,7 +40,8 @@ jobs:
       - name: Changeset
         id: changeset
         run: |
-          CHANGES=$(npx -y turbo build --dry-run=json --filter=...[$TURBO_REF_FILTER] --global-deps=.github/*)
+          CHANGES=$(npx -y turbo build --dry-run=json --filter=...[$TURBO_REF_FILTER] --global-deps=.github/* 2>&1)
+          echo "$CHANGES"
           echo "result=$CHANGES" >> $GITHUB_ENV
 
       - name: Output changed packages
