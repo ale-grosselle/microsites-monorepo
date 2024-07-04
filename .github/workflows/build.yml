@@ -17,8 +17,9 @@ jobs:
         with:
           fetch-depth: 0 # Necessary so we have commit history to compare to
 
-      - name: Install turbo
-        run: npm install turbo@^1
+      - name: 'Install npm packages'
+        run: npm ci --quiet --legacy-peer-deps
+        timeout-minutes: 5
 
       - name: package-a changed in last commit?
         id: changedAction
