@@ -17,14 +17,15 @@ jobs:
         with:
           fetch-depth: 0 # Necessary so we have commit history to compare to
 
+      - name: Install turbo
+        run: npm install turbo@^1
+
       - name: package-a changed in last commit?
         id: changedAction
-        uses: Trampoline-CX/action-turbo-changed@v1
-        with:
-          workspace: package-a
-          from: HEAD^1
+        run: |
+          TURBO_TELEMETRY_DISABLED=1 TURBO_TELEMETRY_MESSAGE_DISABLED=1 npx turbo@^1 run build --filter="package-a...[HEAD^1...HEAD]" --dry-run=json
 
-      # Do something more meaningful here, like push to NPM, do heavy computing, etc.
+      # Add more steps for deployment or further actions based on the output
       - name: Validate Action Output
-        if: steps.changedAction.outputs.changed == 'true' # Check output if it changed or not (returns a boolean)
+        if: steps.changedAction.outputs.changed == 'true'
         run: echo 'package-a changed!'
