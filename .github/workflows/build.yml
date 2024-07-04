@@ -15,14 +15,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0 # Necessary for comparing changes to past commits
+          fetch-depth: 0 # Necessary so we have commit history to compare to
 
-      - name: Collect Turborepo Changes
-        id: turborepoChanges
-        uses: 94726/action-turborepo-changes@v1.1.1
+      - name: package-a changed in last commit?
+        id: changedAction
+        uses: Trampoline-CX/action-turbo-changed@v1
         with:
-          from: HEAD^1 # Changes since previous commit (this is the default)
+          workspace: package-a
+          from: HEAD^1
 
+      # Do something more meaningful here, like push to NPM, do heavy computing, etc.
       - name: Validate Action Output
-        if: contains(fromJson(steps.turborepoChanges.outputs.package_names), 'components') # Check if components package has changed
-        run: echo 'package "components" has changed'
+        if: steps.changedAction.outputs.changed == 'true' # Check output if it changed or not (returns a boolean)
+        run: echo 'package-a changed!'
