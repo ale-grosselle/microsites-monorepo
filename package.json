@@ -5,16 +5,19 @@
     "build": "turbo build",
     "dev": "turbo run dev --filter=@micro-site/* --filter=@packages/proxy",
     "dev-proxy-only": "turbo watch build --filter=@packages/proxy",
-    "asd": "CHANGES=$(npx -y turbo build --dry-run=json --filter=...[620018cf5adb5e2eba7ffac9608e5eee19ebf345] --global-deps=.github/*) echo \"result=$CHANGES\" >> $GITHUB_ENV",
     "start": "turbo run start",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "publish-packages": "turbo run build && changeset version && changeset publish"
+    "publish-packages": "turbo run build && changeset version && changeset publish",
+    "change": "beachball change",
+    "checkchange": "beachball check",
+    "release": "beachball publish"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "beachball": "^2.43.1",
     "changeset": "^0.2.6",
     "prettier": "^3.2.5",
     "turbo": "^2.0.4",
