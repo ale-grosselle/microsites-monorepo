@@ -1,5 +1,16 @@
 # @micro-site/admin
 
+## 1.6.0
+
+### Minor Changes
+
+- d940491: test
+
+### Patch Changes
+
+- Updated dependencies [d940491]
+  - @packages/ui@1.1.0
+
 ## 1.5.0
 
 ### Minor Changes

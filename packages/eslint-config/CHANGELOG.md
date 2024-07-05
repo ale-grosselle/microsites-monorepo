@@ -1,5 +1,11 @@
 # @packages/eslint-config
 
+## 1.1.0
+
+### Minor Changes
+
+- d940491: test
+
 ## 1.0.0
 
 ### Major Changes
