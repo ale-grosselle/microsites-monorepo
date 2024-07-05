@@ -1,5 +1,11 @@
 # @micro-site/admin
 
+## 1.1.0
+
+### Minor Changes
+
+- a9bd687: test
+
 ## 1.0.0
 
 ### Major Changes
