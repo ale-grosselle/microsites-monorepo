@@ -5,17 +5,20 @@
     "build": "turbo build",
     "dev": "turbo run dev --filter=@micro-site/* --filter=@packages/proxy",
     "dev-proxy-only": "turbo watch build --filter=@packages/proxy",
+    "asd": "CHANGES=$(npx -y turbo build --dry-run=json --filter=...[620018cf5adb5e2eba7ffac9608e5eee19ebf345] --global-deps=.github/*) echo \"result=$CHANGES\" >> $GITHUB_ENV",
     "start": "turbo run start",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "publish-packages": "turbo run build && changeset version && changeset publish"
   },
   "devDependencies": {
-    "prettier": "^3.2.5",
-    "turbo": "^2.0.4",
-    "typescript": "^5.4.5",
     "@types/node": "^20",
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "changeset": "^0.2.6",
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.4",
+    "typescript": "^5.4.5"
   },
   "engines": {
     "node": ">=18"
@@ -26,10 +29,11 @@
     "packages/*"
   ],
   "dependencies": {
+    "@changesets/cli": "^2.27.7",
     "@heroicons/react": "^2.1.4",
-    "tailwindcss": "^3.4.4",
     "next": "15.0.0-rc.0",
     "react": "19.0.0-rc-f994737d14-20240522",
-    "react-dom": "19.0.0-rc-f994737d14-20240522"
+    "react-dom": "19.0.0-rc-f994737d14-20240522",
+    "tailwindcss": "^3.4.4"
   }
 }
