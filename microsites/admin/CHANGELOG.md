@@ -1,5 +1,11 @@
 # @micro-site/admin
 
+## 1.4.0
+
+### Minor Changes
+
+- a4eba36: hello
+
 ## 1.3.0
 
 ### Minor Changes
