@@ -1,5 +1,11 @@
 # @micro-site/admin
 
+## 1.5.0
+
+### Minor Changes
+
+- 5879707: Just for test
+
 ## 1.4.0
 
 ### Minor Changes
