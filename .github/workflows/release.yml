@@ -25,9 +25,13 @@ jobs:
 
       - name: Create Release Pull Request
         uses: changesets/action@v1
+        with:
+          commit: "[ci] release"
+          title: "[ci] release"
+        id: changesets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish
         if: steps.changesets.outputs.hasChangesets == 'false'
-        run: npm run  publish
+        run: npm run publish
