@@ -20,6 +20,7 @@
     "beachball": "^2.43.1",
     "changeset": "^0.2.6",
     "prettier": "^3.2.5",
+    "semantic-release-monorepo": "^8.0.2",
     "standard-version": "^9.5.0",
     "turbo": "^2.0.4",
     "typescript": "^5.4.5"
