@@ -11,7 +11,7 @@ export default function LoginForm() {
   const [state, formAction] = useFormState(submitLogin, false);
   useEffect(() => {
     if (state) {
-      console.log("Hey Login successful");
+      console.log("Login successful!");
       window.location.href = "/dashboard";
     }
   }, [state]);
