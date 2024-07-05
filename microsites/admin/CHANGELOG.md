@@ -1,6 +1,6 @@
-# @micro-site/homepage
+# @micro-site/admin
 
-## 2.0.0
+## 1.0.0
 
 ### Major Changes
 
@@ -11,9 +11,3 @@
 - Updated dependencies [35b9676]
 - Updated dependencies [73b58eb]
   - @packages/ui@1.0.0
-
-## 1.0.0
-
-### Major Changes
-
-- b034273: just for testing
