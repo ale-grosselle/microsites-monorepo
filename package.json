@@ -1,5 +1,6 @@
 {
   "name": "turborepo",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "build": "turbo build",
@@ -11,7 +12,8 @@
     "publish-packages": "turbo run build && changeset version && changeset publish",
     "change": "beachball change",
     "checkchange": "beachball check",
-    "release": "beachball publish"
+    "release": "beachball publish",
+    "release2": "standard-version --commit-all --releaseCommitMessageFormat '[skip ci] chore(release) {{currentTag}}'"
   },
   "devDependencies": {
     "@types/node": "^20",
