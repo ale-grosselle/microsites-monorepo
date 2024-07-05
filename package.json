@@ -11,8 +11,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo build --filter=@micro-site^... && changeset publish",
-    "release2": "standard-version --commit-all --releaseCommitMessageFormat '[skip ci] chore(release) {{currentTag}}'"
+    "release": "turbo build --filter=@micro-site^... && changeset publish"
   },
   "devDependencies": {
     "@types/node": "^20",
