@@ -29,7 +29,33 @@ jobs:
         with:
           commit: "[ci] release"
           title: "[ci] release"
-          publish: npm run release
+          publish: npm run publish
         id: changesets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set Output for Published Packages
+        id: set-published-packages
+        run: echo "publishedPackages=$(steps.changesets.outputs.publishedPackages)" >> $GITHUB_ENV
+        if: steps.changesets.outputs.published == 'true'
+
+  deploy:
+    needs: release
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: ${{ fromJson(needs.release.outputs.publishedPackages) }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Deploy microsite
+        run: npm run deploy -- ${{ matrix.package }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
