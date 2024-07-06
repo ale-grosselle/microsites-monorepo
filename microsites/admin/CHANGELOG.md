@@ -1,5 +1,12 @@
 # @micro-site/admin
 
+## 1.8.8
+
+### Patch Changes
+
+- 2338142: òk
+- 2338142: òl
+
 ## 1.8.7
 
 ### Patch Changes
