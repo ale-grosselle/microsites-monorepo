@@ -1,5 +1,13 @@
 # @micro-site/login
 
+## 2.1.1
+
+### Patch Changes
+
+- 773ea85: hello
+- Updated dependencies [773ea85]
+  - @packages/ui@1.1.1
+
 ## 2.1.0
 
 ### Minor Changes

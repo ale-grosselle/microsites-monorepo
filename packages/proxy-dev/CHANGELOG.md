@@ -1,5 +1,11 @@
 # @packages/proxy
 
+## 1.1.1
+
+### Patch Changes
+
+- 773ea85: hello
+
 ## 1.1.0
 
 ### Minor Changes
