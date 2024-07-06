@@ -1,5 +1,11 @@
 # @micro-site/admin
 
+## 1.8.1
+
+### Patch Changes
+
+- a835381: bug
+
 ## 1.8.0
 
 ### Minor Changes
