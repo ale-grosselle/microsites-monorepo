@@ -1,5 +1,13 @@
 # @micro-site/login
 
+## 2.1.1
+
+### Patch Changes
+
+- c2fc625: hello
+- Updated dependencies [c2fc625]
+  - @packages/ui@1.1.1
+
 ## 2.1.0
 
 ### Minor Changes
