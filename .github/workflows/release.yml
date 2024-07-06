@@ -29,7 +29,8 @@ jobs:
         with:
           commit: "[ci] release"
           title: "[ci] release"
-          publish: npm run release
+          publish: |
+            ./scripts/release.sh
         id: changesets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
