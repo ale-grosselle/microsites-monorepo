@@ -1,5 +1,11 @@
 # @micro-site/admin
 
+## 1.8.10
+
+### Patch Changes
+
+- d1e7c72: lk
+
 ## 1.8.9
 
 ### Patch Changes
