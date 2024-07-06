@@ -1,5 +1,11 @@
 # @micro-site/admin
 
+## 1.8.7
+
+### Patch Changes
+
+- 64739af: òk
+
 ## 1.8.6
 
 ### Patch Changes
