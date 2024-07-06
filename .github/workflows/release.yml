@@ -38,20 +38,17 @@ jobs:
         id: set-published-packages
         run: |
           if [ "${{ steps.changesets.outputs.published }}" == "true" ]; then
-            echo "publishedPackages=${{ steps.changesets.outputs.publishedPackages }}" >> $GITHUB_ENV
-            echo "::set-output name=publishedPackages::${{ steps.changesets.outputs.publishedPackages }}"
+            echo "publishedPackages=${{ steps.changesets.outputs.publishedPackages }}" >> $GITHUB_ENV            
           else
-            echo "publishedPackages=[]" >> $GITHUB_ENV
-            echo "::set-output name=publishedPackages::[]"
+            echo "publishedPackages=[]" >> $GITHUB_ENV            
           fi
 
   deploy:
-    if: ${{ needs.release.outputs.publishedPackages != '[]' }}
     needs: release
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        package: ${{ fromJson(needs.release.outputs.publishedPackages) }}
+        package: ${{ needs.release.outputs.publishedPackages }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
