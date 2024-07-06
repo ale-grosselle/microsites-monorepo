@@ -1,5 +1,11 @@
 # @micro-site/homepage
 
+## 2.1.4
+
+### Patch Changes
+
+- 463ec2c: plk
+
 ## 2.1.3
 
 ### Patch Changes
