@@ -1,5 +1,11 @@
 # @micro-site/homepage
 
+## 2.1.3
+
+### Patch Changes
+
+- e908589: Change title
+
 ## 2.1.2
 
 ### Patch Changes
