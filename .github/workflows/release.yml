@@ -12,7 +12,7 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     outputs:
-      publishedPackages: ${{ steps.set-published-packages.outputs.publishedPackages }}
+      packages: ${{ steps.set-packages.outputs.packages }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -37,21 +37,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set Output for Published Packages
-        id: set-published-packages
+        id: set-packages
         run: |
           if [ "${{ steps.changesets.outputs.published }}" == "true" ]; then
-            echo "publishedPackages=${{ steps.changesets.outputs.publishedPackages }}" >> GITHUB_OUTPUT            
+            echo "packages=${{ steps.changesets.outputs.publishedPackages }}" >> GITHUB_OUTPUT            
           else
-            echo "publishedPackages=[]" >> GITHUB_OUTPUT            
+            echo "packages=[]" >> GITHUB_OUTPUT            
           fi
 
   deploy:
-    if: ${{ needs.release.outputs.publishedPackages != '[]' }}
+    if: ${{ needs.release.outputs.packages != '[]' }}
     needs: release
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        package: ${{ fromJson(needs.release.outputs.publishedPackages) }}
+        package: ${{ fromJson(needs.release.outputs.packages) }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
