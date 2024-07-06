@@ -40,6 +40,7 @@ jobs:
         if: steps.changesets.outputs.published == 'true'
 
   deploy:
+    if: ${{ needs.release.outputs.publishedPackages != '' }}
     needs: release
     runs-on: ubuntu-latest
     strategy:
