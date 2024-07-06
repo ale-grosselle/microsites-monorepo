@@ -36,7 +36,7 @@ jobs:
 
       - name: Set Output for Published Packages
         id: set-published-packages
-        run: echo "publishedPackages=$(steps.changesets.outputs.publishedPackages)" >> $GITHUB_ENV
+        run: echo "::set-output name=publishedPackages::${{ steps.set-published-packages.outputs.publishedPackages }}"
         if: steps.changesets.outputs.published == 'true'
 
   deploy:
