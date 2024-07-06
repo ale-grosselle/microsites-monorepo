@@ -12,7 +12,7 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-published-packages.outputs.publishedPackages }}
+      publishedPackages: ${{ steps.set-published-packages.outputs.publishedPackages }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
