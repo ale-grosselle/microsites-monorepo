@@ -33,9 +33,9 @@
   "dependencies": {
     "@changesets/cli": "^2.27.7",
     "@heroicons/react": "^2.1.4",
-    "next": "15.0.0-rc.0",
-    "react": "19.0.0-rc-f994737d14-20240522",
-    "react-dom": "19.0.0-rc-f994737d14-20240522",
+    "next": "^14.2.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.4"
   }
 }
