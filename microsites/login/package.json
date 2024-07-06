@@ -1,6 +1,6 @@
 {
   "name": "@micro-site/login",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "private": true,
   "scripts": {
     "dev": "../../scripts/dev.sh login",
