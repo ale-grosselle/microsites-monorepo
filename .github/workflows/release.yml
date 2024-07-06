@@ -36,11 +36,17 @@ jobs:
 
       - name: Set Output for Published Packages
         id: set-published-packages
-        run: echo "publishedPackages=${{ steps.changesets.outputs.publishedPackages }}" >> $GITHUB_ENV
-        if: steps.changesets.outputs.published == 'true'
+        run: |
+          if [ "${{ steps.changesets.outputs.published }}" == "true" ]; then
+            echo "publishedPackages=${{ steps.changesets.outputs.publishedPackages }}" >> $GITHUB_ENV
+            echo "::set-output name=publishedPackages::${{ steps.changesets.outputs.publishedPackages }}"
+          else
+            echo "publishedPackages=[]" >> $GITHUB_ENV
+            echo "::set-output name=publishedPackages::[]"
+          fi
 
   deploy:
-    if: ${{ needs.release.outputs.publishedPackages != '' }}
+    if: ${{ needs.release.outputs.publishedPackages != '[]' }}
     needs: release
     runs-on: ubuntu-latest
     strategy:
@@ -57,6 +63,6 @@ jobs:
           cache: 'npm'
 
       - name: Deploy microsite
-        run: npm run deploy -- ${{ matrix.package }}
+        run: npm run deploy -- ${{ matrix.package.name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
