@@ -13,7 +13,7 @@
     "version-packages": "changeset version",
     "release": "./scripts/release.sh",
     "publish": "changeset tag && git push --follow-tags",
-    "deploy-single-microsite": "./scripts/release.sh"
+    "deploy-single-microsite": "./scripts/deploy-to-prod.sh"
   },
   "devDependencies": {
     "@types/node": "^20",

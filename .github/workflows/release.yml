@@ -12,7 +12,7 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     outputs:
-      packages: ${{ steps.set-packages.outputs.packages }}
+      publishedPackages: ${{ steps.set-packages.outputs.publishedPackages }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -40,18 +40,18 @@ jobs:
         id: set-packages
         run: |
           if [ "${{ steps.changesets.outputs.published }}" == "true" ]; then
-            echo "packages=${{ steps.changesets.outputs.publishedPackages }}" >> $GITHUB_OUTPUT            
+            echo "publishedPackages=${{ steps.changesets.outputs.publishedPackages }}" >> $GITHUB_OUTPUT            
           else
-            echo "packages=[]" >> $GITHUB_OUTPUT            
+            echo "publishedPackages=[]" >> $GITHUB_OUTPUT            
           fi
 
   deploy:
-    if: ${{ needs.release.outputs.packages != '[]' }}
+    if: ${{ needs.release.outputs.publishedPackages != '[]' }}
     needs: release
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        package: ${{ fromJson(needs.release.outputs.packages) }}
+        package: ${{ fromJson(needs.release.outputs.publishedPackages) }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -63,6 +63,6 @@ jobs:
           cache: 'npm'
 
       - name: Deploy microsite
-        run: npm run deploy -- ${{ matrix.package.name }}
+        run: npm run deploy-single-microsite -- ${{ matrix.package.name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
