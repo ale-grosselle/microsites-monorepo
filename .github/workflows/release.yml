@@ -11,6 +11,8 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-published-packages.outputs.publishedPackages }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -44,11 +46,12 @@ jobs:
           fi
 
   deploy:
+    if: ${{ needs.release.outputs.publishedPackages != '[]' }}
     needs: release
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        package: ${{ needs.release.outputs.publishedPackages }}
+        package: ${{ fromJson(needs.release.outputs.publishedPackages) }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
