@@ -40,9 +40,9 @@ jobs:
         id: set-packages
         run: |
           if [ "${{ steps.changesets.outputs.published }}" == "true" ]; then
-            echo "packages=${{ steps.changesets.outputs.publishedPackages }}" >> GITHUB_OUTPUT            
+            echo "packages=${{ steps.changesets.outputs.publishedPackages }}" >> $GITHUB_OUTPUT            
           else
-            echo "packages=[]" >> GITHUB_OUTPUT            
+            echo "packages=[]" >> $GITHUB_OUTPUT            
           fi
 
   deploy:
