@@ -19,19 +19,17 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
+          cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install --force
+        run: npm ci
 
       - name: Create Release Pull Request
         uses: changesets/action@v1
         with:
           commit: "[ci] release"
           title: "[ci] release"
+          publish: npm run release
         id: changesets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Publish
-        if: steps.changesets.outputs.hasChangesets == 'false'
-        run: npm run release
