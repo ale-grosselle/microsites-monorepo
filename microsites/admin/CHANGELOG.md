@@ -1,5 +1,11 @@
 # @micro-site/admin
 
+## 1.8.3
+
+### Patch Changes
+
+- 7d3ea3d: asd
+
 ## 1.8.2
 
 ### Patch Changes
