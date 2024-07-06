@@ -65,6 +65,6 @@ jobs:
           cache: 'npm'
 
       - name: Deploy microsite
-        run: npm run deploy-single-microsite -- ${{ matrix.package.name }}
+        run: npm run deploy-single-microsite -- ${{ matrix.package }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
