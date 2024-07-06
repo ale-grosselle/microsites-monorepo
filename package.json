@@ -11,7 +11,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "./scripts/release.sh"
+    "release": "./scripts/release.sh",
+    "publish": "changeset tag && git push --follow-tags",
+    "deploy-single-microsite": "./scripts/release.sh"
   },
   "devDependencies": {
     "@types/node": "^20",
