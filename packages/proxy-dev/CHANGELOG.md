@@ -1,11 +1,5 @@
 # @packages/proxy
 
-## 1.1.1
-
-### Patch Changes
-
-- c2fc625: hello
-
 ## 1.1.0
 
 ### Minor Changes
