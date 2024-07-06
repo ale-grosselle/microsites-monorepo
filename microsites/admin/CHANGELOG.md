@@ -1,5 +1,11 @@
 # @micro-site/admin
 
+## 1.7.0
+
+### Minor Changes
+
+- 926fcc7: Little change
+
 ## 1.6.0
 
 ### Minor Changes
