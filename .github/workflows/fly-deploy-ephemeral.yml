@@ -26,6 +26,6 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: pr_number,
-              body: "The build completed successfully! 🎉\n\nYou can check the deployment at [microsites-monorepo](https://microsites-monorepo.fly.dev/)."            
+              body: "Ephemeral deployment completed successfully! 🎉\n\nYou can check it at [microsites-monorepo](https://microsites-monorepo.fly.dev/)."            
             };
             github.issues.createComment(comment);
