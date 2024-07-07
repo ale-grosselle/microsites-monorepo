@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for microsites-monorepo on 2024-07-07T17:05:00+02:00
+# fly.toml app configuration file generated for microsites-monorepo on 2024-07-07T17:28:10+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -18,6 +18,6 @@ primary_region = 'cdg'
   processes = ['app']
 
 [[vm]]
-  memory = '256mb'
+  memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
