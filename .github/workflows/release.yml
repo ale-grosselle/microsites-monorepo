@@ -67,7 +67,7 @@ jobs:
         run: npm ci
 
       - name: Build microsite
-        run: turbo build --filter="${{ matrix.package }}..."
+        run: npx turbo build --filter="${{ matrix.package }}..."
 
       - name: Deploy microsite
         run: npm run deploy-single-microsite -- ${{ matrix.package }}
