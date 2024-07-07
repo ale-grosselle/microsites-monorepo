@@ -1,5 +1,16 @@
 # @micro-site/admin
 
+## 1.8.15
+
+### Patch Changes
+
+- 81314fd: test
+- 81314fd: lk
+- 81314fd: test
+- 81314fd: asd
+- 81314fd: test
+- 81314fd: hello
+
 ## 1.8.14
 
 ### Patch Changes
