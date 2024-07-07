@@ -7,5 +7,5 @@ fi
 PACKAGE_NAME=$1
 
 echo "Deploying package $PACKAGE_NAME to production..."
-
+echo "Please implement the deployment logic here...."
 echo "Deployment of $PACKAGE_NAME completed."
