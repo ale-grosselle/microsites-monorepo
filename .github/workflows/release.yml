@@ -40,8 +40,7 @@ jobs:
         id: set-packages
         run: |
           if [ "${{ steps.changesets.outputs.published }}" == "true" ]; then          
-            names=($(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '.[] | .name'))
-            names_str="[\"${names[@]}\"]"
+            names=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '[.[] | .name] | @json')          
             echo "publishedPackages=${names}" >> $GITHUB_OUTPUT                 
           else
             echo "publishedPackages=[]" >> $GITHUB_OUTPUT            
