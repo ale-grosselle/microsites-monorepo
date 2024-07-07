@@ -1,5 +1,16 @@
 # @micro-site/admin
 
+## 1.8.16
+
+### Patch Changes
+
+- 22177c0: test
+- 22177c0: lk
+- 22177c0: test
+- 22177c0: asd
+- 22177c0: test
+- 22177c0: hello
+
 ## 1.8.15
 
 ### Patch Changes
