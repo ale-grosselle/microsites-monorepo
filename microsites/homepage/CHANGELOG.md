@@ -1,5 +1,14 @@
 # @micro-site/homepage
 
+## 2.1.10
+
+### Patch Changes
+
+- 22177c0: test
+- 22177c0: test
+- 22177c0: test
+- 22177c0: hello
+
 ## 2.1.9
 
 ### Patch Changes
