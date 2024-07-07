@@ -1,5 +1,13 @@
 # @micro-site/homepage
 
+## 2.1.8
+
+### Patch Changes
+
+- b3a5b46: test
+- b3a5b46: test
+- b3a5b46: hello
+
 ## 2.1.7
 
 ### Patch Changes
