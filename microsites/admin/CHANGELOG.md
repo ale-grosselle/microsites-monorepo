@@ -1,5 +1,15 @@
 # @micro-site/admin
 
+## 1.8.14
+
+### Patch Changes
+
+- b3a5b46: test
+- b3a5b46: lk
+- b3a5b46: asd
+- b3a5b46: test
+- b3a5b46: hello
+
 ## 1.8.13
 
 ### Patch Changes
