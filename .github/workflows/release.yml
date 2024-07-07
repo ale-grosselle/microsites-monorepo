@@ -15,10 +15,10 @@ jobs:
       publishedPackages: ${{ steps.set-packages.outputs.publishedPackages }}
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js 20
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
@@ -27,7 +27,7 @@ jobs:
         run: npm ci
 
       - name: Create Release Pull Request
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
           commit: "[ci] release"
           title: "[ci] release"
@@ -55,10 +55,10 @@ jobs:
         package: ${{ fromJson(needs.release.outputs.publishedPackages) }}
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js 20
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
