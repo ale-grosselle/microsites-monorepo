@@ -1,31 +1,34 @@
-# See https://fly.io/docs/app-guides/continuous-deployment-with-github-actions/
-
-name: Fly Deploy Ephemeral environment
+name: Deploy Review App
 on:
+  # Run this workflow on every PR event. Existing review apps will be updated when the PR is updated.
   pull_request:
-    types: [opened]
+    types: [opened, reopened, synchronize, closed]
+
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+  FLY_REGION: iad
+  FLY_ORG: personal
 
 jobs:
-  deploy:
-    name: Deploy app
+  review_app:
     runs-on: ubuntu-latest
-    concurrency: deploy-group    # optional: ensure only one action runs at a time
+    outputs:
+      url: ${{ steps.deploy.outputs.url }}
+    # Only run one deployment at a time per PR.
+    concurrency:
+      group: pr-${{ github.event.number }}
+
+    # Deploying apps with this "review" environment allows the URL for the app to be displayed in the PR UI.
+    # Feel free to change the name of this environment.
+    environment:
+      name: review
+      # The script in the `deploy` sets the URL output for each review app.
+      url: ${{ steps.deploy.outputs.url }}
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only
-        env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-      - name: Post success comment
-        if: success()
-        uses: actions/github-script@v3
-        with:
-          script: |
-            const pr_number = context.payload.pull_request.number;
-            const comment = {
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: pr_number,
-              body: "Ephemeral deployment completed successfully! 🎉\n\nYou can check it at [microsites-monorepo](https://microsites-monorepo.fly.dev/)."            
-            };
-            github.issues.createComment(comment);
+      - name: Get code
+        uses: actions/checkout@v4
+
+      - name: Deploy PR app to Fly.io
+        id: deploy
+        uses: superfly/fly-pr-review-apps@1.2.0
