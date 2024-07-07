@@ -36,7 +36,7 @@ const customRouter = function (req: { path: string; host: string }) {
   });
   if (microsite) {
     const port = typedConfig[microsite].micrositeConfig.port;
-    const url = `http://${process.env.HOSTNAME || "localhost"}:${port}`;
+    const url = `http://${process.env.HOSTNAME || "0.0.0.0"}:${port}`;
     console.log(`Found this microsite: ${microsite}. Redirecting to ${url}`);
     return url;
   }
