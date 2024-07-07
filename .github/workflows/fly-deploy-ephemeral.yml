@@ -1,0 +1,31 @@
+# See https://fly.io/docs/app-guides/continuous-deployment-with-github-actions/
+
+name: Fly Deploy Ephemeral environment
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  deploy:
+    name: Deploy app
+    runs-on: ubuntu-latest
+    concurrency: deploy-group    # optional: ensure only one action runs at a time
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      - name: Post success comment
+        if: success()
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const pr_number = context.payload.pull_request.number;
+            const comment = {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr_number,
+              body: "The build completed successfully! 🎉\n\nYou can check the deployment at [microsites-monorepo](https://microsites-monorepo.fly.dev/)."            
+            };
+            github.issues.createComment(comment);
