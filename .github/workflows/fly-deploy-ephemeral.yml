@@ -1,4 +1,4 @@
-name: Deploy Review App
+name: Deploy Ephemeral Review
 on:
   # Run this workflow on every PR event. Existing review apps will be updated when the PR is updated.
   pull_request:
