@@ -1,5 +1,14 @@
 # @micro-site/admin
 
+## 1.8.13
+
+### Patch Changes
+
+- 6899dde: test
+- 6899dde: lk
+- 6899dde: asd
+- 6899dde: test
+
 ## 1.8.12
 
 ### Patch Changes

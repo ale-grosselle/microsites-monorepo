@@ -1,5 +1,12 @@
 # @micro-site/homepage
 
+## 2.1.7
+
+### Patch Changes
+
+- 6899dde: test
+- 6899dde: test
+
 ## 2.1.6
 
 ### Patch Changes
