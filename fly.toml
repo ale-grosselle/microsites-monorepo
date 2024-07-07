@@ -20,4 +20,4 @@ dockerfile = "packages/proxy-dev/Dockerfile"
 [[vm]]
   memory = '256mb'
   cpu_kind = 'shared'
-  cpus = 0.25
+  cpus = 1
