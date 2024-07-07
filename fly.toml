@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for microsites-monorepo-wild-frog-2351 on 2024-07-07T16:08:49+02:00
+# fly.toml app configuration file generated for microsites-monorepo on 2024-07-07T17:05:00+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -7,7 +7,7 @@ app = 'microsites-monorepo'
 primary_region = 'cdg'
 
 [build]
-dockerfile = "packages/proxy-dev/Dockerfile"
+  dockerfile = 'packages/proxy-dev/Dockerfile'
 
 [http_service]
   internal_port = 8443
