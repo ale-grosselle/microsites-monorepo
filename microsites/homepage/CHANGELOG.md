@@ -1,5 +1,11 @@
 # @micro-site/homepage
 
+## 2.1.6
+
+### Patch Changes
+
+- c26ee0a: test
+
 ## 2.1.5
 
 ### Patch Changes

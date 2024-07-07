@@ -1,5 +1,13 @@
 # @micro-site/admin
 
+## 1.8.12
+
+### Patch Changes
+
+- c26ee0a: test
+- c26ee0a: lk
+- c26ee0a: asd
+
 ## 1.8.11
 
 ### Patch Changes

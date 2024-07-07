@@ -1,5 +1,11 @@
 # @micro-site/login
 
+## 2.1.6
+
+### Patch Changes
+
+- c26ee0a: asd
+
 ## 2.1.5
 
 ### Patch Changes
