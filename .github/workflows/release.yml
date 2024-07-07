@@ -64,6 +64,9 @@ jobs:
           node-version: 20
           cache: 'npm'
 
+      - name: Build microsite
+        run: turbo build --filter="${{ matrix.package }}..."
+
       - name: Deploy microsite
         run: npm run deploy-single-microsite -- ${{ matrix.package }}
         env:
