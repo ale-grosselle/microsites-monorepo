@@ -7,7 +7,7 @@ app = 'microsites-monorepo'
 primary_region = 'cdg'
 
 [build]
-  dockerfile = 'packages/proxy-dev/Dockerfile'
+  dockerfile = 'Dockerfile'
 
 [http_service]
   internal_port = 8443
