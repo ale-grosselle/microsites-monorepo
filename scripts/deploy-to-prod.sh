@@ -7,5 +7,15 @@ fi
 PACKAGE_NAME=$1
 
 echo "Deploying package $PACKAGE_NAME to production..."
-echo "Please implement the deployment logic here...."
+
+echo "Just for instance we are using fly.io to deploy the package..."
+FLY_TOML="microsite/${PACKAGE_NAME#'@micro-site/'}/fly.toml"
+if [ ! -f "$FLY_TOML" ]; then
+  echo "Error: Fly configuration file $FLY_TOML not found."
+  exit 0
+fi
+echo "Deploying $PACKAGE_NAME using fly.io..."
+fly deploy -c "$FLY_TOML" --remote-only
+
+
 echo "Deployment of $PACKAGE_NAME completed."
