@@ -1,5 +1,11 @@
 # @micro-site/admin
 
+## 1.8.21
+
+### Patch Changes
+
+- 6e6ded4: update
+
 ## 1.8.20
 
 ### Patch Changes
