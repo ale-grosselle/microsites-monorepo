@@ -1,5 +1,11 @@
 # @micro-site/admin
 
+## 1.8.19
+
+### Patch Changes
+
+- 64e39bf: test
+
 ## 1.8.18
 
 ### Patch Changes

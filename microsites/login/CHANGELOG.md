@@ -1,5 +1,11 @@
 # @micro-site/login
 
+## 2.1.12
+
+### Patch Changes
+
+- 64e39bf: test
+
 ## 2.1.11
 
 ### Patch Changes
