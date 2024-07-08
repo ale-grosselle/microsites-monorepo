@@ -1,5 +1,11 @@
 # @micro-site/homepage
 
+## 2.1.11
+
+### Patch Changes
+
+- f6a010a: Example
+
 ## 2.1.10
 
 ### Patch Changes

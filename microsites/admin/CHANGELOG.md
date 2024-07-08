@@ -1,5 +1,11 @@
 # @micro-site/admin
 
+## 1.8.18
+
+### Patch Changes
+
+- f6a010a: Example
+
 ## 1.8.17
 
 ### Patch Changes
