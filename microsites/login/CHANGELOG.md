@@ -1,5 +1,11 @@
 # @micro-site/login
 
+## 2.1.13
+
+### Patch Changes
+
+- 5724efe: Bump
+
 ## 2.1.12
 
 ### Patch Changes

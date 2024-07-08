@@ -1,5 +1,11 @@
 # @micro-site/admin
 
+## 1.8.20
+
+### Patch Changes
+
+- 5724efe: Bump
+
 ## 1.8.19
 
 ### Patch Changes
