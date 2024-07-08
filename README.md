@@ -27,4 +27,5 @@ After opened a new PR, the CI will run the tests and build the microsites.
 Through this GHA *fly-deploy-ephemeral.yml* we will deploy the microsites to a temporary URL and you can check if everything is ok.
 Will deploy the microsites to a temporary URL means that we will deploy the proxy server and all the microsites to a temporary URL.
 
-When the PR is merged, changesets
+When the PR is merged, changesets will create a new Pull Request with the new version of the microsite.
+When the PR is merged, the CI will run the tests and build the microsites.
