@@ -1,5 +1,11 @@
 # @micro-site/homepage
 
+## 2.1.14
+
+### Patch Changes
+
+- 6e6ded4: update
+
 ## 2.1.13
 
 ### Patch Changes
