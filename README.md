@@ -81,23 +81,14 @@ participant CI_CD as CI/CD Pipeline
 
 ```mermaid
 sequenceDiagram
-    Dev->>Changeset: Open PR and make changes
-    Changeset->>Dev: Execute changeset and follow steps
-    Changeset->>ProxyDev: Use proxy-dev to create ephemeral environment
-    ProxyDev->>+Ephemeral: Start microsites (Admin, Login, Homepage)
-    Ephemeral-->>ProxyDev: Microsites running
-    Changeset-->>Changeset: Merge PR
-
-    Changeset->>Changeset: Create PR to update microsites
-    Changeset-->>CI_CD: Trigger build and deploy microsites
-
-    CI_CD-->>Ephemeral: Build and deploy specific microsites
-    Ephemeral-->>CI_CD: Microsites updated in ephemeral
-
-    CI_CD-->>Ephemeral: Verify deployment
-    Ephemeral-->>CI_CD: Deployment verified
-
-    CI_CD-->>Dev: Deployment complete
+    Dev->>Changeset: Run changeset and follow steps
+    Dev->>Github: Open PR
+    Github-->>Cloud(fly.io): Deploy proxy-dev docker image to run ephemeral environment (fly-deploy-ephemeral.yml)
+    Dev->>Github: Merge PR
+    Changeset->>Github: Create PR to deploy microsites (changeset-publish.yml)
+    Dev->>Github: Merge PR
+    Changeset-->>Github: Trigger build and deploy microsites (changeset-publish.yml)
+    Github-->>Cloud(fly.io): Deploy each microsite to production (scripts/deploy-to-prod.sh)
 ```
 
 
