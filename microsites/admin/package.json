@@ -1,6 +1,6 @@
 {
   "name": "@micro-site/admin",
-  "version": "1.8.18",
+  "version": "1.8.19",
   "private": true,
   "scripts": {
     "dev": "../../scripts/dev.sh admin",
