@@ -1,4 +1,4 @@
-name: Deploy Review App
+name: Deploy Ephemeral Review
 on:
   # Run this workflow on every PR event. Existing review apps will be updated when the PR is updated.
   pull_request:
@@ -31,4 +31,4 @@ jobs:
         id: deploy
         uses: superfly/fly-pr-review-apps@1.2.1
         with:
-          path: "packages/proxy-dev"
+          config: "packages/proxy-dev/fly.toml"

@@ -1,16 +1,16 @@
-# fly.toml app configuration file generated for microsites-monorepo on 2024-07-07T17:28:10+02:00
+# fly.toml app configuration file generated for microsites-admin on 2024-07-08T08:10:29+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'microsites-monorepo'
+app = 'microsites-admin'
 primary_region = 'cdg'
 
 [build]
   dockerfile = 'Dockerfile'
 
 [http_service]
-  internal_port = 8443
+  internal_port = 3001
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
