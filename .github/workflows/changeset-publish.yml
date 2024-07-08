@@ -54,7 +54,11 @@ jobs:
       matrix:
         package: ${{ fromJson(needs.release.outputs.publishedPackages) }}
     steps:
-      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Install Flyctl
+        run: |
+          curl -L https://fly.io/install.sh | sh
+          export FLYCTL_INSTALL="/home/runner/.fly"
+          export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
       - name: Checkout Repo
         uses: actions/checkout@v4
