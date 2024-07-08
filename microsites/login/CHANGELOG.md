@@ -1,5 +1,11 @@
 # @micro-site/login
 
+## 2.1.15
+
+### Patch Changes
+
+- b98c3ce: Fix slots
+
 ## 2.1.14
 
 ### Patch Changes
