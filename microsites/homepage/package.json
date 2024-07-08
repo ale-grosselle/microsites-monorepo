@@ -1,6 +1,6 @@
 {
   "name": "@micro-site/homepage",
-  "version": "2.1.12",
+  "version": "2.1.13",
   "private": true,
   "scripts": {
     "dev": "../../scripts/dev.sh homepage",
