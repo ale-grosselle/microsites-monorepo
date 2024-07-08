@@ -1,5 +1,11 @@
 # @micro-site/admin
 
+## 1.8.22
+
+### Patch Changes
+
+- b98c3ce: Fix slots
+
 ## 1.8.21
 
 ### Patch Changes
