@@ -1,5 +1,13 @@
 # @micro-site/admin
 
+## 1.8.23
+
+### Patch Changes
+
+- 4c5da56: Example
+- 4c5da56: Fix slots
+- 945153a: Just an example
+
 ## 1.8.22
 
 ### Patch Changes

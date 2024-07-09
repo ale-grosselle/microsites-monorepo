@@ -1,5 +1,13 @@
 # @micro-site/homepage
 
+## 2.1.16
+
+### Patch Changes
+
+- 4c5da56: Example
+- 4c5da56: Fix slots
+- 945153a: Just an example
+
 ## 2.1.15
 
 ### Patch Changes
