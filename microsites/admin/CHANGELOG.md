@@ -1,5 +1,11 @@
 # @micro-site/admin
 
+## 1.8.24
+
+### Patch Changes
+
+- 0788544: Change test for Admin
+
 ## 1.8.23
 
 ### Patch Changes
