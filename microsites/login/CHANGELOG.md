@@ -1,5 +1,11 @@
 # @micro-site/login
 
+## 2.1.17
+
+### Patch Changes
+
+- 4c831af: Just an example
+
 ## 2.1.16
 
 ### Patch Changes
